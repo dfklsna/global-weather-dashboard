@@ -1,0 +1,104 @@
+/*
+파일명: style.css
+코드 내용: 날씨 과제 화면 전체에 공통으로 적용되는 기본 스타일을 설정한다.
+작성자: 김상우
+작성일자: 2026-08-25
+수정 이력:
+- 2026-08-27 15:00 Element Plus 기본 색상을 기존 파란색 디자인과 통일
+- 2026-08-27 15:00 날씨 상태별 공통 Tag 색상과 크기 추가
+- 2026-08-27 15:00 원본 섭씨 구간별 공통 온도 색상 추가
+*/
+
+:root {
+  --el-color-primary: #2563eb;
+  --el-color-primary-light-3: #5b82ed;
+  --el-color-primary-light-5: #88a4f3;
+  --el-color-primary-light-7: #b7c8f8;
+  --el-color-primary-light-8: #d3ddfb;
+  --el-color-primary-light-9: #eef3ff;
+  --el-color-primary-dark-2: #1d4ed8;
+  --el-border-radius-base: 9px;
+}
+
+/* 전체 페이지의 기본 여백과 글꼴을 설정한다. */
+html {
+  min-width: 320px;
+  background: #eef3f9;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  margin: 0;
+  color: #334155;
+  background: #eef3f9;
+  font-family: Arial, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  line-height: 1.5;
+}
+
+button,
+input {
+  font-family: inherit;
+}
+
+/* 메인, 상세, 단기예보가 함께 사용하는 작은 날씨 상태 Badge */
+.weather-tag {
+  display: inline-flex;
+  flex: none;
+  width: fit-content;
+  min-width: 0;
+  max-width: 100%;
+  height: 24px;
+  padding: 0 9px;
+  justify-content: center;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.weather-tag.weather-clear {
+  color: #b45309;
+  background-color: #fff1c2;
+  border-color: #f2c94c;
+}
+
+.weather-tag.weather-clouds {
+  color: #475569;
+  background-color: #e5e7eb;
+  border-color: #b8c0cc;
+}
+
+.weather-tag.weather-rain {
+  color: #0b5ed7;
+  background-color: #d7eaff;
+  border-color: #4c9aff;
+}
+
+.weather-tag.weather-snow {
+  color: #0e7490;
+  background-color: #ecfeff;
+  border-color: #67e8f9;
+}
+
+.weather-tag.weather-default {
+  color: #606266;
+  background-color: #f1f3f5;
+  border-color: #dcdfe6;
+}
+
+/* 기존 컴포넌트 기본색보다 온도 구간 색상을 우선 적용한다. */
+.temperature-hot {
+  color: #e53935 !important;
+}
+
+.temperature-normal {
+  color: #1f5fe0 !important;
+}
+
+.temperature-cold {
+  color: #38a9e0 !important;
+}
+
+.temperature-freezing {
+  color: #0f8f8f !important;
+}
