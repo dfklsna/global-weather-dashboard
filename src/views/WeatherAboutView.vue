@@ -6,6 +6,7 @@
 수정 이력   :
   - 2026-08-27 15:00 Element Plus 소개 카드·기술 태그·버튼 적용
   - 2026-08-27 16:00 3D Location Globe와 현지 시간 기능 소개 추가
+  - 2026-08-27 16:29 Global Weather Dashboard 최종 서비스 소개 적용
 설명        : Global Weather Dashboard의
               현재 기능과 사용 기술을 소개하는 정적 View이다.
 주요 기능   :

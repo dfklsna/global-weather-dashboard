@@ -55,7 +55,7 @@ Vue의 반응형 상태, Component 통신, Pinia 전역 상태, Vue Router와 �
 | Visualization | Globe.gl, Three.js |
 | API | OpenWeatherMap, Open-Meteo |
 | Quality | ESLint, eslint-plugin-vue |
-| Deployment | GitHub Actions, GitHub Pages |
+| Deployment | Vercel |
 
 ## 4. 화면 구성
 
@@ -77,7 +77,7 @@ Vue의 반응형 상태, Component 통신, Pinia 전역 상태, Vue Router와 �
 | `src/stores` | 온도 단위, 선택 도시와 최근 도시 Pinia Store |
 | `src/utils` | 날씨 상태와 온도 색상 규칙 |
 | `src/views` | 메인, 상세, 소개, 안내와 404 View |
-| `.github/workflows` | 품질 검사, Build와 GitHub Pages 자동 배포 |
+| `vercel.json` | Vercel SPA Route Fallback 설정 |
 
 ## 6. API 구성
 
@@ -101,7 +101,7 @@ Pinia의 `configStore`에서 섭씨·화씨 단위와 상세정보 표시 상태
 | `/weather/:cityId` | 도시별 상세 날씨 |
 | 그 외 주소 | 404 Not Found |
 
-GitHub Pages에서는 Build 시 생성되는 `404.html`이 SPA Fallback 역할을 하므로 Dynamic Route를 직접 열거나 새로고침해도 Vue Router가 해당 주소를 처리합니다.
+Vercel에서는 `vercel.json`의 SPA Rewrite가 모든 Vue Route를 `index.html`로 연결하므로 Dynamic Route를 직접 열거나 새로고침해도 해당 화면이 정상 표시됩니다.
 
 ## 9. Location Globe
 
@@ -154,7 +154,7 @@ JavaScript와 Vue 파일의 문법 오류, 미정의 변수와 사용하지 않�
 npm run build
 ```
 
-완료된 정적 파일은 `dist/`에 생성되며 `index.html`, `404.html`, `assets/`를 포함합니다.
+완료된 정적 파일은 `dist/`에 생성되며 `index.html`과 `assets/`를 포함합니다.
 
 ```bash
 npm run preview
@@ -164,9 +164,12 @@ npm run preview
 
 ## 15. Deployment
 
-GitHub Actions는 `main` Branch가 갱신되면 ESLint 검사와 Production Build를 실행하고 성공한 `dist/`를 GitHub Pages에 배포합니다.
-배포 환경에서는 Repository Actions Secret에 `VITE_OPENWEATHER_API_KEY`를 설정해야 실제 날씨 요청이 동작합니다.
-실제 배포 주소는 Hosting 완료 후 이 영역과 최종 작업 기록에 추가합니다.
+Source Repository: [dfklsna/global-weather-dashboard](https://github.com/dfklsna/global-weather-dashboard)
+
+Vercel은 Vite Production Build 결과를 Hosting하며, `vercel.json`의 Rewrite로 Vue Router 직접 접근과 새로고침을 처리합니다.
+배포 환경에는 `VITE_OPENWEATHER_API_KEY`를 환경변수로 등록하며 실제 Key 값은 Repository와 README에 포함하지 않습니다.
+
+Deployment URL: [Global Weather Dashboard](https://global-weather-dashboard-gules.vercel.app/)
 
 ## 16. 작성자
 
@@ -184,7 +187,7 @@ GitHub Actions는 `main` Branch가 갱신되면 ESLint 검사와 Production Buil
 
 - `작성일`은 해당 파일이 과제에서 처음 만들어진 날짜를 유지합니다.
 - 기존 파일을 다음 과제에서 다시 변경하면 작성일을 덮어쓰지 않고 날짜, 시간, 변경 내용을 `수정 이력`에 추가합니다.
-- README 1번부터 12번까지의 작업 날짜와 실제 Vue, JavaScript, CSS, HTML 파일 머리말을 대조하였습니다.
+- README 1번부터 13번까지의 작업 날짜와 실제 Vue, JavaScript, CSS, HTML 파일 머리말을 대조하였습니다.
 - JSON과 Lock 파일처럼 주석을 허용하지 않는 파일은 머리말을 넣지 않고 각 작업의 파일 목록에서 변경 날짜를 관리합니다.
 
 | 작업 기록 | 날짜 | 머리말 확인 내용 |
@@ -199,6 +202,7 @@ GitHub Actions는 `main` Branch가 갱신되면 ESLint 검사와 Production Buil
 | 10. Weather UI Library | 2026-08-27 15:00 | Element Plus 적용 파일과 기존 파일 수정 이력 |
 | 11. 3D Location Globe 패널 | 2026-08-27 15:20 | LocationGlobe 작성일과 App·API·Mock Data·메인 View 수정 이력 |
 | 12. Location Globe 현지 시간과 낮·밤 진행도 | 2026-08-27 16:00 | LocationGlobe·API·Mock Data·소개·안내 View 수정 이력 |
+| 13. Global Weather Dashboard 최종 배포 | 2026-08-27 16:29 | 최종 서비스명·ESLint·환경변수·Build·Vercel 배포 이력 |
 
 ## 공통 실행 방법
 
@@ -1235,6 +1239,119 @@ API 주소, 요청 Parameter, API Key 관리 방식은 변경하지 않았으며
 - 작성자: 김상우
 - 작성일자: 2026-08-27
 - 작성시간: 16:00
+
+---
+
+### 13. 2026-08-27 (목요일) 16:29 - Global Weather Dashboard 최종 품질관리 및 Vercel 배포
+
+#### 프로젝트 설명
+
+Vue 실습의 각 단계에서 구현한 기능을 하나의 완성된 날씨 서비스로 정리하고 Source Code 품질 검사, 환경변수 보안 확인, Production Build와 Vercel Hosting까지 완료한 최종 제출 작업입니다.
+GitHub Source Repository에 최초 업로드가 완료된 실제 시각인 16:29를 작업 시간으로 기록하였습니다.
+
+#### 프로젝트명과 사용자 화면 정리
+
+- 공식 프로젝트명을 `Global Weather Dashboard`로 통일하였습니다.
+- 메인 Hero를 `REAL-TIME WEATHER PLATFORM`과 최종 서비스명, 실시간 날씨·예보·대기질·위치·시간 안내 문구로 변경하였습니다.
+- Navigation, 브라우저 제목, 문서 설명, Open Graph와 X 공유 정보를 최종 서비스명에 맞추었습니다.
+- 서비스 소개와 이용 안내에서 실습용 또는 추가 View 문구를 제거하고 실제 사용자용 표현으로 정리하였습니다.
+- 상세 화면의 데이터 출처 문구를 실시간 날씨와 예비 날씨 표현으로 변경하였습니다.
+- 기존 날씨 카드, 검색창, 상세 카드, 색상, Navigation 간격과 반응형 Layout은 유지하였습니다.
+
+#### ESLint 품질관리
+
+- Vue 3와 JavaScript에 필요한 최소 ESLint Flat Configuration을 추가하였습니다.
+- `package.json`에 별도의 lint Script를 추가하였습니다.
+- 전체 Source를 검사하여 기존 연습 파일의 문법 오류 2건, 사용하지 않는 Import 1건과 상세 View의 사용하지 않는 오류 변수 1건을 수정하였습니다.
+- 최종 대시보드에서 상태 확인 용도로만 남아 있던 `console.log` Watcher를 제거하였습니다.
+- 이전 Composition 및 Component 학습 파일에서 과제 문법 확인에 필요한 Log와 Alert는 최종 Router Application에서 Import되지 않으므로 기존 학습 기록으로 유지하였습니다.
+- 최종 `npm run lint`가 Error 없이 완료되었습니다.
+
+#### API Key와 환경변수 보안
+
+- 실제 OpenWeatherMap Key는 `import.meta.env.VITE_OPENWEATHER_API_KEY`를 통해서만 읽습니다.
+- 기존 Axios 연습 파일에 남아 있던 하드코딩 Key를 제거하고 같은 환경변수를 사용하도록 수정하였습니다.
+- `.env`, `.env.local`, `.env.*.local`과 Vercel Local 설정 폴더를 Git 업로드 대상에서 제외하였습니다.
+- 실제 Key가 포함되지 않은 `.env.example`을 유지하였습니다.
+- Git Repository는 Key 제거와 보안 검사가 끝난 뒤 새로 생성했으므로 이전 Commit에 Key가 포함된 이력이 없습니다.
+- Git Stage에서도 환경변수 파일과 알려진 Key Pattern이 포함되지 않은 것을 확인한 뒤 Push하였습니다.
+- Vercel Production 환경에는 Key 값을 Config 환경변수로 등록했으며 Source Repository와 README에는 값을 기록하지 않았습니다.
+- `VITE_*` 값은 Frontend Build에서 브라우저가 사용하므로 완전한 Server Secret과 다르다는 점을 최종 환경변수 안내에 명시하였습니다.
+
+#### Production Build
+
+- Vite Production Build를 실행하여 `dist/index.html`, JavaScript, CSS, 이미지와 Globe 관련 Bundle이 정상 생성되는 것을 확인하였습니다.
+- 대표 공유 이미지와 Favicon이 Production Asset에 포함됩니다.
+- 3D Globe Library의 크기로 인해 Bundle 크기 안내가 표시되지만 Build Error는 발생하지 않았습니다.
+- Production Preview에서 메인, 소개, 안내, 상세, 즐겨찾기 404 Route와 정적 Asset을 확인하였습니다.
+- OpenWeatherMap Current Weather, Forecast, Open-Meteo Air Quality와 지구 Texture 요청이 모두 HTTP 200으로 응답하였습니다.
+
+#### Vercel Hosting
+
+- Vercel에서 `global-weather-dashboard` Vite 프로젝트를 생성하였습니다.
+- `vercel.json`의 SPA Rewrite로 모든 Vue Router 주소를 `index.html`에 연결하였습니다.
+- `/`, `/about`, `/guide`, `/weather/1835848`, `/favorites`를 주소창에서 직접 요청했을 때 모두 HTTP 200과 Vue Application Shell을 반환하는 것을 확인하였습니다.
+- Favicon과 대표 공유 이미지가 Vercel Production 주소에서 HTTP 200으로 제공됩니다.
+- Vercel Production Build가 완료되고 상태가 Ready인 것을 확인하였습니다.
+- 실제 배포 주소는 [https://global-weather-dashboard-gules.vercel.app/](https://global-weather-dashboard-gules.vercel.app/)입니다.
+
+#### Source Repository
+
+- GitHub Repository: [https://github.com/dfklsna/global-weather-dashboard](https://github.com/dfklsna/global-weather-dashboard)
+- `main` Branch에 최초 Source Code를 2026-08-27 16:29에 업로드하였습니다.
+- 실제 Hosting은 최종 안내에 따라 Vercel을 사용합니다.
+
+#### 기존 기능 유지
+
+- Vue 3, Vue Router, Pinia, Axios와 Element Plus 구조를 유지하였습니다.
+- 기본 네 도시의 실제 날씨와 국내 33개 도시 한글 검색을 유지하였습니다.
+- 현재 날씨, 단기 예보와 대기질 외부 API를 유지하였습니다.
+- 도시 카드 선택·선택 해제, 상세 Dynamic Route와 Catch-all Route를 유지하였습니다.
+- 섭씨·화씨 변경, 최근 확인 도시와 상세정보 설정을 유지하였습니다.
+- 날씨 상태별 Badge, 원본 섭씨 온도별 색상과 Marker 색상을 유지하였습니다.
+- Location Globe의 회전, 도시 위치, Glow·Ring Marker와 Earth Texture를 유지하였습니다.
+- 검색 도시 현지 시간, 일출·일몰, 낮·밤 진행도와 남은 시간을 유지하였습니다.
+- Loading, Error, Empty 상태와 데스크톱·모바일 반응형 Layout을 유지하였습니다.
+
+#### 생성 및 수정한 파일
+
+- `eslint.config.js`
+- `vercel.json`
+- `public/og.png`
+- `.env.example`
+- `.gitignore`
+- `package.json`
+- `package-lock.json`
+- `vite.config.js`
+- `index.html`
+- `src/App.vue`
+- `src/views/WeatherHomeView.vue`
+- `src/views/WeatherAboutView.vue`
+- `src/views/WeatherGuideView.vue`
+- `src/views/WeatherDetailView.vue`
+- `src/components/practice/library/AxiosWeather.vue`
+- `src/components/practice/basic/EventObjectExample.vue`
+- `src/components/practice/basic/SampleTwo.vue`
+- `src/components/practice/basic/v-onEnentHandlerExample.vue`
+- 기존 `README.md`
+
+#### 최종 확인 결과
+
+- 화면과 문서의 공식 프로젝트명이 `Global Weather Dashboard`로 통일되었습니다.
+- 최종 사용자 화면에서 수업 단계용 Hero 문구가 제거되었습니다.
+- ESLint Error 0건으로 품질 검사가 완료되었습니다.
+- 프로젝트 의존성 보안 검사에서 알려진 취약점이 발견되지 않았습니다.
+- 실제 API Key가 Source, README, Git Stage와 Git History에 포함되지 않았습니다.
+- Production Build와 Vercel Production Build가 모두 성공하였습니다.
+- Vercel의 모든 대표 Route가 직접 접근 시 HTTP 200으로 응답합니다.
+- Production 환경변수가 적용된 Bundle과 외부 API 응답을 확인하였습니다.
+- GitHub Source Repository와 Vercel Deployment URL을 README에 기록하였습니다.
+
+#### 작성자
+
+- 작성자: 김상우
+- 작성일자: 2026-08-27
+- GitHub 업로드 시간: 16:29
 
 ---
 

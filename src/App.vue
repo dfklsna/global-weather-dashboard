@@ -8,6 +8,7 @@
   - 2026-08-27 13:30 Weather Axios 제목과 API 과제 설명으로 변경
   - 2026-08-27 15:00 Element Plus el-card를 공통 Navigation에 적용
   - 2026-08-27 15:20 Navigation과 Dashboard가 공유하는 outer container 적용
+  - 2026-08-27 16:29 Global Weather Dashboard 최종 Navigation 문구 적용
 설명        : Global Weather Dashboard의 공통 Layout으로
               Navigation Bar, 단위 설정, View 표시 영역을 구성한다.
 주요 기능   :

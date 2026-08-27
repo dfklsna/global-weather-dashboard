@@ -3,6 +3,7 @@
  * 코드 내용: Global Weather Dashboard의 JavaScript와 Vue 파일을 검사한다.
  * 작성자: 김상우
  * 작성일자: 2026-08-27
+ * 작성시간: 16:29
  */
 
 import js from '@eslint/js'

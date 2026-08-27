@@ -10,6 +10,7 @@
   - 2026-08-27 15:00 Element Plus 로딩·오류·빈 상태와 버튼·태그 적용
   - 2026-08-27 15:20 오른쪽 실제 3D Location Globe 패널과 선택 도시 위치 연결
   - 2026-08-27 15:20 공통 outer container에 맞춘 Dashboard Grid 정렬
+  - 2026-08-27 16:29 최종 서비스명과 사용자용 Hero 문구 적용
 설명        : Axios로 실제 도시 날씨를 검색하면서
               기존 Mock Data, Pinia, Router 기능을 함께 유지한다.
 주요 기능   :
